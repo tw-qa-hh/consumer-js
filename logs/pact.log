@@ -1,0 +1,61 @@
+I, [2020-03-18T08:07:41.184425 #87529]  INFO -- : Registered expected interaction GET /
+D, [2020-03-18T08:07:41.184653 #87529] DEBUG -- : {
+  "description": "a request for addressess",
+  "request": {
+    "method": "GET",
+    "path": "/"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    "body": [
+      {
+        "zipCode": {
+          "json_class": "Pact::SomethingLike",
+          "contents": "00000"
+        }
+      }
+    ]
+  },
+  "metadata": null
+}
+I, [2020-03-18T08:07:41.191508 #87529]  INFO -- : Received request GET /
+D, [2020-03-18T08:07:41.191624 #87529] DEBUG -- : {
+  "path": "/",
+  "query": "",
+  "method": "get",
+  "headers": {
+    "User-Agent": "FetchStream",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
+    "Accept-Encoding": "gzip, deflate",
+    "Host": "localhost:1234",
+    "Connection": "close",
+    "Version": "HTTP/1.1"
+  }
+}
+I, [2020-03-18T08:07:41.191906 #87529]  INFO -- : Found matching response for GET /
+D, [2020-03-18T08:07:41.191987 #87529] DEBUG -- : {
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json; charset=utf-8"
+  },
+  "body": [
+    {
+      "zipCode": {
+        "json_class": "Pact::SomethingLike",
+        "contents": "00000"
+      }
+    }
+  ]
+}
+I, [2020-03-18T08:07:41.227959 #87529]  INFO -- : Verifying - interactions matched
+I, [2020-03-18T08:07:41.231464 #87529]  INFO -- : Cleared interactions
+I, [2020-03-18T08:07:41.234963 #87529]  INFO -- : Updating pact for provider-go at /Users/andriikobtsev/Project/consumer-js/pacts/consumer-js-provider-go.json
+I, [2020-03-18T08:07:41.235936 #87529]  INFO -- : *****************************************************************************
+I, [2020-03-18T08:07:41.236056 #87529]  INFO -- : Updating existing file ./Users/andriikobtsev/Project/consumer-js/pacts/consumer-js-provider-go.json as pactfile_write_mode is :update
+I, [2020-03-18T08:07:41.236085 #87529]  INFO -- : Only interactions defined in this test run will be updated.
+I, [2020-03-18T08:07:41.236106 #87529]  INFO -- : As interactions are identified by description and provider state, pleased note that if either of these have changed, the old interactions won't be removed from the pact file until the specs are next run with :pactfile_write_mode => :overwrite.
+I, [2020-03-18T08:07:41.236126 #87529]  INFO -- : *****************************************************************************
