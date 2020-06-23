@@ -1,9 +1,9 @@
 const fetch = require('fetch');
 
 module.exports = {
-    getAddresses: async () => {
+    getAddresses: async (providerUrl) => {
         const res = await new Promise((resolve, reject) => {
-            return fetch.fetchUrl('http://localhost:1234/', {}, (err, meta, body) => {
+            return fetch.fetchUrl(providerUrl, {}, (err, meta, body) => {
                 if (err) {
                     return resolve('Error calling provider')
                 }

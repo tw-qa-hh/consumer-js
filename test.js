@@ -1,25 +1,41 @@
 import * as path from 'path';
-import { Pact, Matchers } from '@pact-foundation/pact';
+import {Pact, Matchers} from '@pact-foundation/pact';
+import {Publisher} from "@pact-foundation/pact-node";
 import {getAddresses} from './controller';
-const { somethingLike } = Matchers;
+
+const {somethingLike, eachLike } = Matchers;
+
+const mockedProviderHost = 'localhost';
+const mockedProviderPort = 1234;
+const pathToPacts = path.resolve(process.cwd(), 'pacts');
 
 const provider = new Pact({
     consumer: 'consumer-js',
     provider: 'provider-go',
-    host: 'localhost',
-    port: 1234,
+    host: mockedProviderHost,
+    port: mockedProviderPort,
     log: path.resolve(process.cwd(), 'logs', 'pact.log'),
-    dir: path.resolve(process.cwd(), 'pacts'),
+    dir: pathToPacts,
     logLevel: 'WARN',
     spec: 2,
     ssl: false,
     pactfileWriteMode: "update"
 });
 
+const brokerOpts = {
+    pactFilesOrDirs: [pathToPacts],
+    pactBroker: 'https://qa-ham-pact-broker.herokuapp.com/',
+    consumerVersion: process.env.GIT_SHA || 'v1',
+    tags: ['master', 'qa-ham']
+};
 
-const expectedBody = [{
-    zipCode:  somethingLike('00000')
-}];
+const publisher = new Publisher(brokerOpts);
+
+const expectedBody = eachLike({
+    ID: somethingLike('id'),
+    zipCode: somethingLike('zipCode'),
+    Street: somethingLike('Street')
+}, { min: 1 });
 
 const interaction = {
     uponReceiving: 'a request for addressess',
@@ -37,7 +53,7 @@ const interaction = {
 };
 
 beforeAll(() => {
-   return  provider.setup();
+    return provider.setup();
 });
 
 beforeEach(() => {
@@ -48,8 +64,12 @@ afterEach(() => {
     return provider.finalize()
 });
 
+afterAll(() => {
+    return publisher.publish();
+})
+
 test('can retrieve list of addresss', async () => {
-    const response = await getAddresses();
+    const response = await getAddresses(`http://${mockedProviderHost}:${mockedProviderPort}`);
     expect(response.meta.status).toBe(200);
     expect(response.body).toBeInstanceOf(Array);
     return provider.verify()
