@@ -2,18 +2,19 @@
 
 const Hapi = require('@hapi/hapi');
 const {getAddresses} = require("./controller");
+const PROVIDER_URL = 'https://provider-go.herokuapp.com/';
 
 const init = async () => {
 
     const server = Hapi.server({
-        port: 3000,
-        host: 'localhost'
+        port: process.env.PORT || 3000,
+        host: '0.0.0.0'
     });
 
     server.route({
         method: 'GET',
         path: '/',
-        handler: getAddresses
+        handler: () => getAddresses(PROVIDER_URL)
     });
 
     await server.start();
@@ -26,4 +27,4 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-init();
+(async () => await init())();
