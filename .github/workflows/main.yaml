@@ -1,4 +1,4 @@
-name NodeJs
+name: Consumer NodeJs
 
 on:
   push:
