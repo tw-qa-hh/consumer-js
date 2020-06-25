@@ -30,11 +30,11 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web
 
-    release:
-      runs-on: ubuntu-latest
-      needs: build_and_push
-      steps:
-        - name: Release
-          env:
-            HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
+  release:
+    runs-on: ubuntu-latest
+    needs: build_and_push
+    steps:
+      - name: Release
+      env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web
