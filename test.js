@@ -25,15 +25,15 @@ const provider = new Pact({
 const brokerOpts = {
     pactFilesOrDirs: [pathToPacts],
     pactBroker: 'https://qa-ham-pact-broker.herokuapp.com/',
-    consumerVersion: process.env.GIT_SHA || 'v1',
-    tags: ['master', 'qa-ham']
+    consumerVersion: process.env.GIT_SHA || '1.0.0',
+    tags: ['master', 'consumer-js']
 };
 
 const publisher = new Publisher(brokerOpts);
 
 const expectedBody = eachLike({
-    ID: somethingLike('id'),
-    zipCode: somethingLike('zipCode'),
+    ID: somethingLike('js'),
+    ZipCode: somethingLike('ZipCode'),
     Street: somethingLike('Street')
 }, { min: 1 });
 
@@ -46,7 +46,7 @@ const interaction = {
     willRespondWith: {
         status: 200,
         headers: {
-            'Content-Type': 'application/json; charset=utf-8'
+            'Content-Type': 'application/json'
         },
         body: expectedBody
     }
