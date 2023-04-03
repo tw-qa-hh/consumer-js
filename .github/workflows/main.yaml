@@ -3,7 +3,7 @@ name: Consumer NodeJs
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   test:
