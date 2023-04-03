@@ -12,7 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.11.0",
-    "@hapi/hapi": "^20.0.0",
+    "@hapi/hapi": "^21.0.0",
     "@pact-foundation/pact": "^9.11.1",
     "fetch": "^1.1.0",
     "jest": "^27.0.0"
