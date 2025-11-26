@@ -13,7 +13,7 @@
   "dependencies": {
     "@babel/core": "^7.11.0",
     "@hapi/hapi": "^21.0.0",
-    "@pact-foundation/pact": "^15.0.0",
+    "@pact-foundation/pact": "^16.0.0",
     "fetch": "^1.1.0",
     "jest": "^30.0.0"
   },
