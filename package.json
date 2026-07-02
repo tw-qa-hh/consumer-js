@@ -11,14 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^8.0.0",
     "@hapi/hapi": "^21.0.0",
     "@pact-foundation/pact": "^17.0.0",
     "fetch": "^1.1.0",
     "jest": "^30.0.0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-env": "^8.0.0",
     "@pact-foundation/pact-node": "^10.9.7",
     "babel-jest": "^30.0.0",
     "babel-polyfill": "^6.26.0",
